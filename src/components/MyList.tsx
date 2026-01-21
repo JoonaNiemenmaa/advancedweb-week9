@@ -1,7 +1,7 @@
 type TItem = {
 	id: string;
 	text: string;
-	marked: boolean;
+	clicked: boolean;
 };
 
 interface ListProps {
@@ -18,7 +18,7 @@ export default function MyList(props: ListProps) {
 			<li
 				key={item.id}
 				style={{
-					textDecoration: item.marked ? "line-through" : "none",
+					textDecoration: item.clicked ? "line-through" : "none",
 				}}
 				onClick={() => {
 					props.updateList(item.id);

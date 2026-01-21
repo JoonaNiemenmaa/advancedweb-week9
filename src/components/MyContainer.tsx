@@ -13,7 +13,7 @@ export default function MyContainer() {
 				{
 					id: (id++).toString(),
 					text: text,
-					marked: false,
+					clicked: false,
 				},
 			]),
 		);
@@ -24,7 +24,7 @@ export default function MyContainer() {
 		setItems(
 			items.map((item) => {
 				if (id === item.id) {
-					item.marked = !item.marked;
+					item.clicked = !item.clicked;
 				}
 				return item;
 			}),
