@@ -7,26 +7,46 @@ export default function MyContainer() {
 
 	let id: number = 0;
 
-	function addItem() {
+	function handleClick() {
 		setItems(
 			items.concat([
 				{
 					id: (id++).toString(),
 					text: text,
+					marked: false,
 				},
 			]),
+		);
+		setText("");
+	}
+
+	function updateList(id: string): void {
+		setItems(
+			items.map((item) => {
+				if (id === item.id) {
+					item.marked = !item.marked;
+				}
+				return item;
+			}),
 		);
 	}
 
 	return (
 		<div>
-			<form>
-				<textarea value={text}></textarea>
-				<br></br>
-				<button onClick={addItem}>Add item</button>
-			</form>
+			<textarea
+				value={text}
+				onChange={(event) => {
+					setText(event.target.value);
+				}}
+			></textarea>
+			<br></br>
+			<button onClick={handleClick}>Add item</button>
 
-			<MyList header="Joonan kammio" items={items}></MyList>
+			<MyList
+				header="Lista asioita"
+				items={items}
+				updateList={updateList}
+			></MyList>
 		</div>
 	);
 }
